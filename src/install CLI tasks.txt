@@ -1,0 +1,21 @@
+#sudo raspi-config # enable SPI option on default boot
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo nano /boot/config.txt
+sudo reboot
+
+sudo apt-get install python-dev mosquitto-clients python-mosquitto
+sudo service mosquitto stop
+
+wget https://github.com/Gadgetoid/py-spidev/archive/master.zip
+unzip master.zip
+rm master.zip
+cd py-spidev-master
+sudo python setup.py install
+cd ..
+
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+sudo pip install paho-mqtt

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content = "height = device-height, width = 420, user-scalable = no" />
+	<title>Infinity Table</title>
+	<link rel="stylesheet" href="/ui.colorpicker.css" />
+	<link rel='stylesheet' href='spectrum.css' />
+	<script type="text/javascript" src="/webiopi.js"></script>
+	<script src="spectrum.js"></script>
+	<script type="text/javascript">
+
+        /*
+        $(function() {
+            $("#showPalette").spectrum({
+                showPalette: true,
+                palette: [
+                    ['black', 'white', 'blanchedalmond'],
+                    ['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']
+                ],
+                change: updateBorders
+            });
+        });
+        */
+
+		var updateColorValues = function(macro, args, response) {
+			    var color = response.split("/");
+			    $("#red").val(color[0]);
+			    $("#green").val(color[1]);
+			    $("#blue").val(color[2]);
+			}
+
+		function init() {
+			/*
+			var head = document.getElementsByTagName('head')[0];
+			var jqcolor = document.createElement('script');
+			jqcolor.type = 'text/javascript';
+			jqcolor.src = '/jq.color.js';
+			head.appendChild(jqcolor);
+			*/
+
+
+
+			//immediately update color fields
+			webiopi().callMacro("getColorString", [], updateColorValues);
+
+			var button;
+
+			button = webiopi().createButton("setpulse", "Set Pulse", pulse);
+			$("#setpulse").append(button);
+
+			button = webiopi().createButton("flyingcolor", "Flying Color", flyingcolor);
+			$("#flyingcolor").append(button);
+
+			button = webiopi().createButton("setstatic", "Set All", setstatic);
+			$("#setstatic").append(button);
+
+			button = webiopi().createButton("randomstatic", "Random Colors", randomstatic);
+			$("#randomstatic").append(button);
+
+			button = webiopi().createButton("rgb", "R-G-B Pattern", rgb);
+			$("#rgb").append(button);
+
+			button = webiopi().createButton("colorwheel", "Color Wheel (Static)", colorwheel);
+			$("#colorwheel").append(button);
+
+			button = webiopi().createButton("spin", "Spin", spin);
+			$("#spin").append(button);
+
+			button = webiopi().createButton("ranger", "Ranger Colors", ranger);
+			$("#ranger").append(button);
+
+
+			/*
+			var hideit = function(e, ui) { $(this).val('#'+ui.hex); $('.ui-colorpicker').css('display', 'none'); };
+			$('#colorpicker').colorpicker({ hide: hideit, submit: hideit });
+			*/
+		}
+
+		function getColor() {
+			var red = document.getElementById('red').value;
+			var green = document.getElementById('green').value;
+			var blue = document.getElementById('blue').value;
+
+			return [red,green,blue];
+			/*
+			var hexstring = $("#colorpick").val();
+
+			var r = HexToR(hexstring);
+			var g = HexToG(hexstring);
+			var b = HexToB(hexstring);
+
+			function HexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+			function HexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+			function HexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+			function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+
+			return [r,g,b];
+			*/
+		}
+
+		function pulse() {
+			webiopi().callMacro("setPulse");
+		}
+
+		function flyingcolor() {
+			webiopi().callMacro("flyingColor",getColor(), updateColorValues);
+		}
+
+		function setstatic() {
+			webiopi().callMacro("static",getColor(), updateColorValues);
+		}
+
+		function randomstatic() {
+			webiopi().callMacro("randomstatic");
+		}
+
+		function colorwheel() {
+			webiopi().callMacro("colorwheel");
+		}
+
+		function spin() {
+		    webiopi().callMacro("spin");
+		}
+
+		function rgb() {
+			webiopi().callMacro("rgb");
+		}
+
+		function ranger() {
+			webiopi().callMacro("ranger");
+		}
+
+		webiopi().ready(init);
+
+	</script>
+	<style type="text/css">
+		button {
+			margin: 5px 5px 5px 5px;
+			height: 50px;
+			width: auto;
+			font-size: 24pt;
+			font-weight: bold;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<div id="content" align="center">
+		<h1>The Infinity Table Controls - <i>infinitytable.local</i></h1>
+		<!-- <div><label for="colorpicker">Color Picker:</label> <input type="text" id="colorpicker" name="colorpicker"/></div> -->
+		<div id="color">
+			<form>
+				RED (1-255): <input type="number" min="1" max="255" maxlength="3" name="red" id="red" value="255"><br>
+				GREEN (1-255): <input type="number" min="1" max="255" maxlength="3" name="green" id="green" value="255"><br>
+				BLUE (1-255): <input type="number" min="1" max="255" maxlength="3" name="blue" id="blue" value="255"><br>
+			</form>
+            <!-- <input type='text' name='showPalette' id='showPalette' value='lightblue' /> -->
+		</div>
+		<div id="setpulse"></div>
+		<div id="flyingcolor"></div>
+		<div id="setstatic"></div>
+		<div id="randomstatic"></div>
+		<div id="colorwheel"></div>
+		<div id="spin"></div>
+		<div id="rgb"></div>
+		<div id="ranger"></div>
+	</div>
+</body>
+</html>
