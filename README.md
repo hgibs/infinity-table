@@ -1,14 +1,14 @@
 ### infinity-table
-My code for driving 50 RGB leds in an infinity table using python and MQTT (mosquitto) as the interface, or a simple stand-alone program.
+My code for driving RGB leds in an infinity table using python and MQTT (mosquitto) as the interface, or a simple stand-alone program.
 
 # Running
 For using MQTT as an interface:
 
 <code> sudo python main-mqtt.py </code>
 
-or for running a stand-alone (non-interactive) program:
+or for installing to run at boot:
 
-<code> sudo python main-static.py </code>
+<code> sudo python setup.py </code>
 
 # How it works
 Uhhh... I'll type this up later
