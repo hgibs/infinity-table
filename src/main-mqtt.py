@@ -13,7 +13,7 @@ loglocation = '/home/pi/inftable/run.log'
 
 #status_id = "inftable1_stats"
 
-mqtt_server = "server.arcnet"
+mqtt_server = "bionic.mercury.intranet"
 mqtt_port = 8883
 mqtt_timeout = 60
 mqtt_topic = "myhome/+/+/inftable"
