@@ -1,6 +1,10 @@
 ### infinity-table
 My code for driving RGB leds in an infinity table using python and MQTT (mosquitto) as the interface, or a simple stand-alone program.
 
+# Requirements:
+- SPI enabled (use <code>raspi-config</code>)
+- up-to-date OS
+
 # Set up
 Before doing anything, it is useful to run
 <code> sudo python setup.py </code> 
