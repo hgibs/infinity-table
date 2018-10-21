@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env python
+
+
 BOOTSCRIPT=$PWD/src/init.d_shell_main-mqtt
 INSTALL=/etc/init.d/inftable-lights
 
@@ -9,4 +11,5 @@ fi
 
 echo "Copying $BOOTSCRIPT"
 echo "to $INSTALL"
+
 cp $BOOTSCRIPT $INSTALL

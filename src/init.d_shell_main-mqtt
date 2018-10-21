@@ -1,13 +1,13 @@
 #! /bin/sh
-# /etc/init.d/main-mqtt
+# /etc/init.d/inftable-lights
 
 ### BEGIN INIT INFO
-# Provides:          main-mqtt
+# Provides:          inftable-lights
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Simple script to start a program at boot
+# Short-Description: Simple script to start the inftable-mqtt
 # Description:       A simple script from www.stuffaboutcode.com which will start / stop a program a boot / shutdown.
 ### END INIT INFO
 
